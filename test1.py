@@ -3,12 +3,10 @@ tf.set_random_seed(1774)  # for reproducibility
 
 # X and Y data
 x_train = [1, 2, 3]
-z_train = [1, 2, 3]
 y_train = [1, 2, 3]
 
 X = tf.placeholder(dtype=tf.float32)
 Y = tf.placeholder(dtype=tf.float32)
-Z = 3
 
 W1 = tf.Variable(tf.random_normal([1]), name="weight1")
 b1 = tf.Variable(tf.random_normal([1]), name="bias1")
