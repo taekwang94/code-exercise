@@ -1,6 +1,5 @@
 import tensorflow as tf
-import numpy
-tf.set_random_seed(7777)  # for reproducibility
+tf.set_random_seed(1774)  # for reproducibility
 
 # X and Y data
 x_train = [1, 2, 3]
