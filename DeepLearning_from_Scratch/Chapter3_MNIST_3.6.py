@@ -36,12 +36,30 @@ def predict(network,x,Active='sigmoid'):
 x_test, y_test = get_data()
 network = init_network()
 
-accuracy_cnt =0
-for i in range(len(x_test)):
-    y = predict(network,x_test[i],Active='sigmoid')
-    print(y)
-    p = np.argmax(y)
-    if p == y_test[i]:
-        accuracy_cnt +=1
+batch_size = 100
 
-print("Accuracy: "+str(float(accuracy_cnt/len(x_test))))
+def predict_test(batch=False):
+    if batch==True:
+        accuracy_cnt = 0
+        for i in range(0, len(x_test), batch_size):
+            x_batch = x_test[i:i+batch_size]
+            y_batch = predict(network, x_batch, Active='sigmoid')
+
+            p = np.argmax(y_batch,axis=1)
+            accuracy_cnt += np.sum(p==y_test[i:i+batch_size])
+
+        print("Accuracy: " + str(float(accuracy_cnt / len(x_test))))
+    else:
+        accuracy_cnt = 0
+        for i in range(len(x_test)):
+            y = predict(network, x_test[i], Active='sigmoid')
+
+            p = np.argmax(y)
+            if p == y_test[i]:
+                accuracy_cnt += 1
+
+        print("Accuracy: " + str(float(accuracy_cnt / len(x_test))))
+
+
+predict_test()
+predict_test(True)
