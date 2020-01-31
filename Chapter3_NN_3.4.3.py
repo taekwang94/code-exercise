@@ -27,7 +27,7 @@ def forward(network, x):
     z2 = sigmoid(a2)
     a3 = np.dot(z2,W3)+b3
     y = identity_function(a3)
-    return y
+    return  y
 
 network = init_network()
 x = np.array([1.0,0.5])
